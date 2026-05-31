@@ -1,0 +1,20 @@
+name: Stale Issues
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          stale-issue-message: 'Este issue ha estado inactivo 30 dias. Sin actividad se cerrara automaticamente.'
+          stale-pr-message: 'Este PR ha estado inactivo 30 dias. Sin actividad se cerrara automaticamente.'
+          days-before-stale: 30
+          days-before-close: 7
