@@ -1,18 +1,18 @@
 const assert = require('node:assert/strict')
 const { describe, it, before, after } = require('node:test')
 
-let server, baseUrl
-
-before(async () => {
-  server = require('../server')
-  await new Promise(resolve => server.listen(0, resolve))
-  const { port } = server.address()
-  baseUrl = `http://localhost:${port}`
-})
-
-after(() => { server.close() })
-
 describe('Servidor', () => {
+  let baseUrl, app
+
+  before(async () => {
+    app = require('../server')
+    await app.start()
+    const { port } = app.server.address()
+    baseUrl = `http://localhost:${port}`
+  })
+
+  after(() => { app.server.close() })
+
   it('deberia responder 200 en /', async () => {
     const res = await fetch(baseUrl + '/')
     assert.equal(res.status, 200)

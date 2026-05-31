@@ -18,8 +18,12 @@ const server = http.createServer((req, res) => {
   }
 })
 
-if (process.env.NODE_ENV !== 'test') {
-  server.listen(PORT, () => console.log(`Servidor en :${PORT}`))
+function start(port = PORT) {
+  return new Promise(resolve => server.listen(port, resolve))
 }
 
-module.exports = server
+if (require.main === module) {
+  start().then(() => console.log(`Servidor en http://localhost:${PORT}`))
+}
+
+module.exports = { server, start }
