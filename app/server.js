@@ -27,3 +27,4 @@ if (require.main === module) {
 }
 
 module.exports = { server, start }
+// optimización: cache en memoria
