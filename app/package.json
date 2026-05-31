@@ -1,0 +1,12 @@
+{
+  "name": "final-project",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js",
+    "lint": "standard --fix"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0"
+  }
+}
